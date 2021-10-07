@@ -135,6 +135,7 @@ function createDownloadLink(blob) {
 	currentDate += d.getSeconds() + "-";
 	currentDate += d.getMilliseconds();
 
+	// setting filename to the current date/time
 	filename = currentDate
 
 
@@ -145,13 +146,13 @@ function createDownloadLink(blob) {
 	//save to disk link
 	link.href = url;
 	link.download = filename + ".wav"; //download forces the browser to donwload the file using the  filename
-	link.innerHTML = "<div class=\"save-btn\">Save to disk</div>";
+	link.innerHTML = "&nbsp; &nbsp;<span class=\"save-btn\">Save File</span>";
 
 	//add the new audio element to li
 	li.appendChild(au);
 
 	//add the filename to the li
-	li.appendChild(document.createTextNode(filename + ".wav "))
+	li.appendChild(document.createTextNode(filename + ".wav"))
 
 	//add the save to disk link to li
 	li.appendChild(link);
@@ -159,9 +160,9 @@ function createDownloadLink(blob) {
 	//upload link
 	var upload = document.createElement('a');
 	upload.href = "#";
-	upload.innerHTML = "<div class=\"upload-btn\">Upload</div>";
+	upload.innerHTML = "&nbsp;<span class=\"upload-btn\">Upload</span>";
 	upload.addEventListener("click", function (event) {
-
+		// prevent the window from loading when uploading to server
 		event.preventDefault();
 		var fd = new FormData();
 		fd.append("audio_data", blob, filename);

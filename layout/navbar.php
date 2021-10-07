@@ -1,40 +1,55 @@
-<div class="nav-wrapper">
-  <nav class="nav-menu">
-    <ul class="nav-menu">
-      <li class="nav-item-top">
-        <a class="site-logo" href="index.php">Riff Catcher</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mt-3" href="riffcatcher.php">My Library of Riffs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mt-3" href="band.php">My Bands</a>
-      </li>
+<nav class="nav-wrapper">
+    <ul class="nav-menu pt-4">
+        <li class="nav-item ">
+            <a class="nav-link-logo" href="index.php"><h1>RiffCatcher</h1><span class="nav-profile">Catching riffs, one dream at a time</span></a>
+        </li>
+    </ul>
+    <ul class="nav-menu pt-4">
+        <li class="nav-item-library">
+            <a class="nav-link" href="riffcatcher.php"><i class="far fa-play-circle"></i>&nbsp;My Library of Riffs</a>
+        </li>
     </ul>
 
 
     <div class="profile-img nav-img">
-      <?php if (isset($_SESSION['username'])) {
-        echo '<a href="user-profile.php">';
-        echo '<img src="usr/' . $_SESSION['profile_image'] . '" ' . 'height="50" width="50" alt="profile photo of ' . $_SESSION['username'] . '">';
-      } else {
-        echo "<a href=\"login.php\"><img src=\"img/missing-profile-photo.png\" height=\"50\" width=\"50\" alt=\"Missing profile Image\"></a>";
-        echo '&nbsp;&nbsp;<a class="not-logged-in" href="login.php">Not Logged in</a>';
-      }
-      ?>
-      <a class="nav-btn" id="login" href="login.php">Login</a>&nbsp;&nbsp;
-      <a class="nav-btn" id="logout" href="inc/logout.ajax.inc.php">Logout</a>
+        <?php if (isset($_SESSION['username'])) {
+            echo '<a href="update-profile-image.php">';
+            echo '<img src="usr/' . $_SESSION['profile_image'] . '" ' . 'height="50" width="50" alt="profile photo of ' . $_SESSION['username'] . '"></a>';
+        } else {
+            echo "<a href=\"login.php\"><img src=\"img/missing-profile-photo.png\" height=\"50\" width=\"50\" alt=\"Missing profile Image\"></a>";
+            echo '<a class="not-logged-in" href="login.php">Not Logged in</a>';
+        }
+        ?>
     </div>
 
+
+
     <div class="nav-profile">
-      <a href="user-profile.php">
-        <p><?php echo (isset($_SESSION['username'])) ? $_SESSION['username'] : ""; ?>
-          <br>
-          <?php echo (isset($_SESSION['firstname'])) ? $_SESSION['firstname'] . " " . $_SESSION['lastname'] :  ""; ?>
-          <br>
-          <?php echo (isset($_SESSION['email'])) ? $_SESSION['email'] : ""; ?> </p>
-      </a>
+        
+
+        <ul>
+            <li><?php echo (isset($_SESSION['username'])) ? "<span class=\"profile-header-text\">User: </span>" . strtoupper($_SESSION['username']) : ""; ?></li>
+            <li><?php echo (isset($_SESSION['firstname'])) ? "<span class=\"profile-header-text\">Name: </span>" . $_SESSION['firstname'] . " " . $_SESSION['lastname'] :  ""; ?></li>
+            <li><?php echo (isset($_SESSION['email'])) ? "<span class=\"profile-header-text\">Email: </span>" . $_SESSION['email'] : ""; ?></li>
+            <li><?php echo (isset($_SESSION['email'])) ? "<a href=\"user-profile.php\">Edit Profile</a></li>" : ""; ?>
+        </ul>
     </div>
-  </nav>
-</div>
+
+
+
+    <ul class="nav-menu pt-4">
+        <li class="nav-item-bands">
+            <a class="nav-link" href="band.php"><i class="fas fa-music"></i>&nbsp;My Bands</a>
+        </li>
+    </ul>
+
+
+    <div class="login-btn">
+        <a class="btn btn-outline-success nav-login-btn" id="login" href="login.php">Login</a>
+    </div>
+    <div class="logout-btn">
+        <a class="nav-logout-btn btn btn-outline-danger" id="logout" href="inc/logout.ajax.inc.php">Logout</a>
+    </div>
+
+</nav>
 <script src="js/script.js"></script>
